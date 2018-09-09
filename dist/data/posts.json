@@ -1,0 +1,59 @@
+[ 
+    {
+        "id":"graph-architecture-part-1",
+        "author":{
+            "name":"Adam",
+            "avatar":"Avatar1.svg"
+        },
+        "details":{
+            "date":"2018-09-02T20:00:00Z",
+            "title":"Software Analysis Using Graphs",
+            "summary":"An introductory guide looking at the application of GraphViz to analyse architectures of systems with different complexities.",
+            "image":"Graph.svg"
+        },
+        "contents":[
+            {
+                "type":"p", 
+                "content": ""
+            }
+        ]
+    },
+    {
+        "id":"graph-architecture-part-2",
+        "author":{
+            "name":"Adam",
+            "avatar":"Avatar1.svg"
+        },
+        "details":{
+            "date":"2018-09-02T20:00:00Z",
+            "title":"Analysing Software Architecture Using Graphs - Part 2",
+            "summary":"An introductory guide looking at the application of GraphViz to analyse architectures of different complexities.",
+            "image":"Graph.svg"
+        },
+        "contents":[
+            {
+                "type":"p", 
+                "content": ""
+            }
+        ]
+    },
+    {
+        "id":"graph-architecture-part-2",
+        "author":{
+            "name":"Jessica",
+            "avatar":"Avatar2.svg"
+        },
+        "details":{
+            "date":"2018-09-02T20:00:00Z",
+            "title":"Analysing Software Architecture Using Graphs - Part 2",
+            "summary":"An introductory guide looking at the application of GraphViz to analyse architectures of different complexities.",
+            "image":"Graph.svg"
+        },
+        "contents":[
+            {
+                "type":"p", 
+                "content": ""
+            }
+        ]
+    }
+]
