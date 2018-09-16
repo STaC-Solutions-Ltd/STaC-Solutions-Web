@@ -6,96 +6,18 @@
         "text": "An introductory guide looking at using the application GraphViz to analyse software architectures and produce visual output.",
         "image": "Graph.svg"
     },
+    "url": "graph-architecture-part-1.htm",
     "authorId": 1,
-    "content": [{
-            "type": "section",
-            "title": "Introduction",
-            "content": [{
-                    "type": "paragraph",
-                    "content": "One of the biggest challenges when approaching an existing piece of software is trying to understand how each distinct component is related to the others. As software and its technical implementation becomes more complex, it becomes more difficult to hold the entire solution in memory. When systems reach this tipping point it becomes easier for simple mistakes to be made, and harder for people to approach and learn the system. It is at this point that documenting the core components and relationships becomes essential."
-                },
-                {
-                    "type": "paragraph",
-                    "content": "In this series of posts I'm going to look into how we can technically analyse these, not just for ourselves but for people coming to these systems in the future. This could be across one of many levels; where software physically resides, the distinct applications that make up a solution, how components are internally structured, or even how business entities link from a logical perspective. With any of these scenarios, it requires the person doing the investigation to eventually have a comprehensive knowledge of the solution. This series of articles will look at some of the methods and tools that can be used to document and visualise architectures."
-                }
-            ]
-        }, {
-            "type": "section",
-            "title": "So what is a graph?",
-            "content": [{
-                "type": "paragraph",
-                "content": "A graph is a series of nodes and edges. Each node represents a concept, these may be of the same type or entirely different. The edges then link these together describing the relationship that two nodes share. This might be a reciprocal relationship or it might be only one-sided, this is where directional graphs come into play."
-            }]
-        }, {
-            "type": "section",
-            "title": "GraphViz",
-            "content": [{
-                "type": "paragraph",
-                "content": "<a href='https: //www.graphviz.org/'>GraphViz</a> describes itself as the following:"
-            }, {
-                "type": "blockquote",
-                "cites": "https://www.graphviz.org/",
-                "content": "Graphviz is open source graph visualization software. Graph visualization is a way of representing structural information as diagrams of abstract graphs and networks. It has important applications in networking, bioinformatics,  software engineering, database and web design, machine learning, and in visual interfaces for other technical domains."
-            }, {
-                "type": "paragraph",
-                "content": "GraphViz supports many different types of graph, including both directional and non-directional. There are also a number of different layout algorithms, that are best suited to different sizes and types of graph. In this post we are going to focus on the dot algorithm as it provides a performant solution on large graphs,while also giving legible output."
-            }]
-        }, {
-            "type": "section",
-            "title": "GraphViz vs. Microsoft Visio vs. Draw.io",
-            "content": [{
-                "type": "paragraph",
-                "content": "A tool like GraphViz differs from traditional flowchart and drawing tools. The main difference being that with GraphViz you define the objects and relationships as a set of coded rules. Additional style rules can be added retrospectively to enhance the generated diagram. With tools like <a href='https://draw.io/' > Draw.IO </a> or <a href='https://products.office.com/en-gb/visio/flowchart-software'>Microsoft Visio</a> the emphasis is on creating a diagram first. This means that you have to juggle the concepts and relationships, while also trying to draw and lay these out in a sensible way. With GraphViz it is also easier to then refer back to the ruleset that created the diagram. With flowchart tools it 's easy to corrupt the ruleset by accidently changing the layout."
-            }]
+    "enabled": 0
+}, {
+    "id": "leicesterjs-sept-2018",
+    "date": "2018-09-12T20:00:00Z",
+    "title": "Free beer and pizza at the LeicesterJS meet up",
+    "summary": {
+        "text": "Last Thursday we attended the inaugural LeicesterJS meet up at CloudCall in the city centre."
 
-        },
-        {
-            "type": "section",
-            "title": "Creating your first graph",
-            "content": [{
-                    "type": "paragraph",
-                    "content": "You will need the following software installed:"
-                }, {
-                    "type": "list",
-                    "content": [{
-                            "type": "listitem",
-                            "content": "<a href='https://code.visualstudio.com/'>Visual Studio Code - Download Here</a>"
-                        },
-                        {
-                            "type": "list",
-                            "content": [{
-                                    "type": "listitem",
-                                    "content": "<a href='https://github.com/Stephanvs/vscode-graphviz'>Graphviz (dot) language support for Visual Studio Code</a>"
-                                },
-                                {
-                                    "type": "listitem",
-                                    "content": "<a href='https://marketplace.visualstudio.com/items?itemName=EFanZh.graphviz-preview'>GraphViz Preview</a>"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "listitem",
-                            "content": "<a href='https://www.graphviz.org/download/'>GraphViz - Download Here</a>"
-                        }
-                    ]
-                },
-                {
-                    "type": "paragraph",
-                    "content": "Both Visual Studio Code and GraphViz can be installed directly from their respective websites. The two dependencies in Visual Studio Code can be installed through the marketplace. Although not required they do simplify the process of generating graphs. When installing GraphViz Preview you will need to change the 'graphvizPreview.dotPath' setting in Visual Studio Code to point to your GraphViz 'dot.exe' file. This allows the preview to generate."
-                },
-                {
-                    "type": "paragraph",
-                    "content": "To achieve this a simple file is created of the type dot this is where your rules will go. If you are using the recommended toolset you should also be able to open a preview by hitting CTRL+SHIFT+P and selecting GraphViz Preview."
-                },
-                {
-                    "type": "paragraph",
-                    "content": "For our first attempt lets look at a simple web application. The concepts we're dealing with are a user interface, our business logic and our data persistance. In most cases this will be a simple website with a database back end. Now we know our core concepts we can add them to our first graph."
-                },
-                {
-                    "type": "code",
-                    "content": "digraph{\r\n    \"User Interface\";\r\n    \"Business Logic\";\r\n    \"Data Persistance\";\r\n    \"Website\";\r\n    \"Database\";\r\n}"
-                }
-            ]
-        }
-    ]
+    },
+    "url": "leicesterjs-sept-2018.htm",
+    "authorId": 2,
+    "enabled": 1
 }]

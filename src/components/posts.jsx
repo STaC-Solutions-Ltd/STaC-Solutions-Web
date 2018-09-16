@@ -18,7 +18,7 @@ class Posts extends React.Component {
     componentDidMount() {
         this.props.postsActions.fetchPosts()
             .then(() => {
-                let posts = this.props.posts.map((post) => {
+                let posts = this.props.posts.filter(post => post.enabled === 1).map((post) => {
                     return (
                         <PostSummary key={post.id}
                             id={post.id}

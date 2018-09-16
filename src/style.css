@@ -397,3 +397,23 @@ figure {
 	align-items: flex-end;
 	flex-wrap: wrap;
 }
+
+twitterwidget.twitter-tweet {
+	margin: 0 auto !important;
+}
+
+.post-metadata {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin-right: 30px;
+	margin-bottom: -24px;
+}
+
+.post-metadata-labels {
+	display: flex;
+	flex-direction: column;
+	text-align: right;
+	justify-content: space-evenly;
+	margin-right: 25px;
+}

@@ -25,7 +25,9 @@ class PostSummary extends React.Component {
                 </div>
                 <div className="post-summary-footer">
                     <NavLink className="post-summary-post-link" to={this.getPostUrl()}>Read More...</NavLink>
-                    <img src={this.getImageUrl()}></img>
+                    {this.props.summary.image &&
+                        <img src={this.getImageUrl()}></img>
+                    }
                 </div>
             </section>
         )

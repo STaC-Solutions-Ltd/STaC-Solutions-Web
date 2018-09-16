@@ -49,6 +49,10 @@ module.exports = {
     new CopyWebpackPlugin([{
       from: './src/data',
       to: 'data'
+    }]),
+    new CopyWebpackPlugin([{
+      from: './src/posts',
+      to: 'posts'
     }])
   ]
 };

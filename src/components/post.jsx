@@ -3,35 +3,44 @@ import { bindActionCreators } from 'redux';
 import * as postsActions from '../actions/postsActions';
 import PropTypes from 'prop-types';
 import React from 'react';
-import PostContent from './post/post-content.jsx'
 import ImageBar from './common/image-bar.jsx'
 import FourOhFour from './404.jsx';
+import PostMetaData from './posts/metadata.jsx';
 
 class Post extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            post: null
+            post: null,
+            postHTML: ''
         };
     }
 
     componentDidMount() {
         //assume we have loaded the posts 
-        let currentPost = this.getPost(this.props.match.params.post);
+        let currentPost = this.getPostData(this.props.match.params.post);
 
         //post not found so attempt to reload all posts
         if (currentPost === null) {
             this.props.postsActions.fetchPosts().then(() => {
-                let currentPost = this.getPost(this.props.match.params.post);
-                this.setState({ post: currentPost });
+                let currentPost = this.getPostData(this.props.match.params.post);
+                this.fetchPostHTML(currentPost.url)
+                    .then(() => this.setState({ post: currentPost }));
             });
         } else {
-            this.setState({ post: currentPost });
+            this.fetchPostHTML(currentPost.url)
+                .then(() => this.setState({ post: currentPost }));
         }
     }
 
-    getPost(postID) {
+    componentDidUpdate() {
+        twttr.widgets.load(
+            document.getElementById('article')
+        );
+    }
+
+    getPostData(postID) {
         let post = this.props.posts.filter(post => post.id === postID);
 
         if (post.length > 0) {
@@ -41,27 +50,35 @@ class Post extends React.Component {
         return null;
     }
 
+    fetchPostHTML(path) {
+        return fetch("/posts/" + path, {
+            method: 'GET',
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+                'Accept': 'text/html'
+            }
+        })
+            .then(response => response.text())
+            .then(text => this.setState({ postHTML: text }));
+    }
+
+    createMarkup(html) {
+        return { __html: html };
+    }
+
     render() {
         if (this.state.post === null) {
-            return (
-                <FourOhFour></FourOhFour>
-            );
+            return null;
         } else {
 
             return (
-                <section >
+                <section>
                     <ImageBar ImageClass="parallax parallax--weave" />
-                    <article className="center panel">
-                        <div>
-                            <div>
-                                <userpicture />
-                                <username />
-                                <div>Published on {this.state.post.date}</div>
-                            </div>
-                            <h2>{this.state.post.title}</h2>
-                        </div>
-                        <PostContent content={this.state.post.content} />
-                    </article >
+                    <section className="panel">
+                        <PostMetaData post={this.state.post} />
+                        <div id="article" dangerouslySetInnerHTML={this.createMarkup(this.state.postHTML)}></div>
+                    </section>
                     <ImageBar ImageClass="parallax parallax--triangles" />
                 </section >
             );
