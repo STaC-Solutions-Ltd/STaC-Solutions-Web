@@ -1,23 +1,37 @@
-[{
-    "id": "graph-architecture-part-1",
-    "date": "2018-09-02T20:00:00Z",
-    "title": "Analysing Complex Software Using Graphs",
-    "summary": {
-        "text": "An introductory guide looking at using the application GraphViz to analyse software architectures and produce visual output.",
-        "image": "Graph.svg"
-    },
-    "url": "graph-architecture-part-1.htm",
-    "authorId": 1,
-    "enabled": 0
-}, {
-    "id": "leicesterjs-sept-2018",
-    "date": "2018-09-12T20:00:00Z",
-    "title": "Free beer and pizza at the LeicesterJS meet up",
-    "summary": {
-        "text": "Last Thursday we attended the inaugural LeicesterJS meet up at CloudCall in the city centre."
+[
+    {
+        "id": "graph-architecture-part-1",
+        "date": "2018-09-02T20:00:00Z",
+        "title": "Analysing Complex Software Using Graphs",
+        "summary": {
+            "text": "An introductory guide looking at using the application GraphViz to analyse software architectures and produce visual output.",
+            "image": "Graph.svg"
+        },
+        "url": "graph-architecture-part-1.htm",
+        "authorId": 1,
+        "enabled": 0
+    }, {
+        "id": "leicesterjs-sept-2018",
+        "date": "2018-09-12T20:00:00Z",
+        "title": "Free beer and pizza at the LeicesterJS meet up",
+        "summary": {
+            "text": "Last Thursday we attended the inaugural LeicesterJS meet up at CloudCall in the city centre."
 
+        },
+        "url": "leicesterjs-sept-2018.htm",
+        "authorId": 2,
+        "enabled": 1
     },
-    "url": "leicesterjs-sept-2018.htm",
-    "authorId": 2,
-    "enabled": 1
-}]
+    {
+        "id": "agile-leicester-sept-2018",
+        "date": "2018-09-25T20:00:00Z",
+        "title": "Agile Leicester September meet up.",
+        "summary": {
+            "text": "Practical advice from Jon Terry on how to set up and use a Kanban board to help improve productivity."
+
+        },
+        "url": "agile-leicester-sept-2018.htm",
+        "authorId": 2,
+        "enabled": 1
+    }
+]
