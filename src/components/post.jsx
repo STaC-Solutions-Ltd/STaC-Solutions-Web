@@ -24,11 +24,15 @@ class Post extends React.Component {
         //post not found so attempt to reload all posts
         if (currentPost === null) {
             this.props.postsActions.fetchPosts().then(() => {
-                let currentPost = this.getPostData(this.props.match.params.post);
+                currentPost = this.getPostData(this.props.match.params.post);
                 this.fetchPostHTML(currentPost.url)
                     .then(() => this.setState({ post: currentPost }));
+
+                document.title = currentPost.title;
             });
         } else {
+            document.title = currentPost.title;
+
             this.fetchPostHTML(currentPost.url)
                 .then(() => this.setState({ post: currentPost }));
         }
@@ -38,6 +42,10 @@ class Post extends React.Component {
         twttr.widgets.load(
             document.getElementById('article')
         );
+    }
+
+    componentWillUnmount(){
+        document.title = "STaC Solutions Ltd";
     }
 
     getPostData(postID) {
