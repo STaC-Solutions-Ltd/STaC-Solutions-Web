@@ -1,16 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class Circle extends React.Component{
-    render(){
-        return (
-            <div className="circle-container">
-                <div className="circle" title={this.props.Label}>
-                    <img alt={this.props.AltText} src={this.props.Image} />
-                </div>
-                <p className="circle-label">{this.props.Label}</p>
-            </div>
-        )
-    }
-}
+const Circle = (props) => {
+  const { Label, Image, AltText } = props;
 
-export default Circle
+  return (
+    <div className="circle-container">
+      <div className="circle" title={Label}>
+        <img alt={AltText} src={Image} />
+      </div>
+      <p className="circle-label">
+        {Label}
+      </p>
+    </div>
+  );
+};
+
+Circle.propTypes = {
+  Label: PropTypes.string.isRequired,
+  Image: PropTypes.string.isRequired,
+  AltText: PropTypes.string.isRequired
+};
+
+export default Circle;

@@ -1,13 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class ImageBar extends React.Component{
-    render(){
-        return (
-            <div className="angle-holder angled-bottom angled-top">
-                <div className={this.props.ImageClass}></div>
-            </div>
-        )
-    }
-}
+const ImageBar = (props) => {
+  const { ImageClass } = props;
+  return (
+    <div className="angle-holder angled-bottom angled-top">
+      <div className={ImageClass} />
+    </div>
+  );
+};
 
-export default ImageBar
+ImageBar.propTypes = {
+  ImageClass: PropTypes.string.isRequired
+};
+
+export default ImageBar;
