@@ -41,3 +41,5 @@ See also the list of [contributors](https://github.com/STaC-Solutions-Ltd/STaC-S
 ## Licensing - Apache License 2.0
 
 All source is licensed as per the attached license.txt more information can be found here: https://choosealicense.com/licenses/apache-2.0/
+
+Trademarks and Logos remain the express property of STaC Solutions Ltd.
