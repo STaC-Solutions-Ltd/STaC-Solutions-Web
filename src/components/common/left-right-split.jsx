@@ -1,18 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class LeftRightSplit extends React.Component{
-    render(){
-        return (
-            <div className="panel split centered">
-                <div className="leftSplit">
-                    {this.props.left}
-                </div>
-                <div className="rightSplit">
-                    {this.props.right}
-                </div>
-            </div>
-        )
-    }
-}
+const LeftRightSplit = (props) => {
+  const { left, right } = props;
 
-export default LeftRightSplit
+  return (
+    <div className="panel split centered">
+      <div className="leftSplit">
+        {left}
+      </div>
+      <div className="rightSplit">
+        {right}
+      </div>
+    </div>
+  );
+};
+
+LeftRightSplit.propTypes = {
+  left: PropTypes.shape({}).isRequired,
+  right: PropTypes.shape({}).isRequired
+};
+
+export default LeftRightSplit;

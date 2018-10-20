@@ -1,118 +1,120 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as postsActions from '../actions/postsActions';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ImageBar from './common/image-bar.jsx'
-import FourOhFour from './404.jsx';
-import PostMetaData from './posts/metadata.jsx';
+import { bindActionCreators } from 'redux';
+import * as postsActions from '../actions/postsActions';
+import ImageBar from './common/image-bar';
+import PostMetaData from './posts/metadata';
 
 class Post extends React.Component {
+  static createMarkUp(html) {
+    return { __html: html };
+  }
 
-    constructor() {
-        super();
-        this.state = {
-            post: null,
-            postHTML: ''
-        };
+  constructor() {
+    super();
+    this.state = {
+      post: null,
+      postHTML: ''
+    };
+  }
+
+  componentDidMount() {
+    const { match, dispatchablePostsActions } = this.props;
+
+    // assume we have loaded the posts
+    let currentPost = this.getPostData(match.params.post);
+
+    // post not found so attempt to reload all posts
+    if (currentPost === null) {
+      dispatchablePostsActions.fetchPosts().then(() => {
+        currentPost = this.getPostData(match.params.post);
+        this.fetchPostHTML(currentPost.url)
+          .then(() => this.setState({ post: currentPost }));
+
+        document.title = currentPost.title;
+      });
+    } else {
+      document.title = currentPost.title;
+
+      this.fetchPostHTML(currentPost.url)
+        .then(() => this.setState({ post: currentPost }));
+    }
+  }
+
+  componentDidUpdate() {
+    window.twttr.widgets.load(
+      document.getElementById('article')
+    );
+  }
+
+  componentWillUnmount() {
+    document.title = 'STaC Solutions Ltd';
+  }
+
+  getPostData(postID) {
+    const { posts } = this.props;
+    const post = posts.filter(p => p.id === postID);
+
+    if (post.length > 0) {
+      return post[0];
     }
 
-    componentDidMount() {
-        //assume we have loaded the posts 
-        let currentPost = this.getPostData(this.props.match.params.post);
+    return null;
+  }
 
-        //post not found so attempt to reload all posts
-        if (currentPost === null) {
-            this.props.postsActions.fetchPosts().then(() => {
-                currentPost = this.getPostData(this.props.match.params.post);
-                this.fetchPostHTML(currentPost.url)
-                    .then(() => this.setState({ post: currentPost }));
+  fetchPostHTML(path) {
+    return fetch(`/posts/${path}`, {
+      method: 'GET',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        Accept: 'text/html'
+      }
+    })
+      .then(response => response.text())
+      .then(text => this.setState({ postHTML: text }));
+  }
 
-                document.title = currentPost.title;
-            });
-        } else {
-            document.title = currentPost.title;
+  render() {
+    const { post, postHTML } = this.state;
 
-            this.fetchPostHTML(currentPost.url)
-                .then(() => this.setState({ post: currentPost }));
-        }
+    if (post === null) {
+      return null;
     }
 
-    componentDidUpdate() {
-        twttr.widgets.load(
-            document.getElementById('article')
-        );
-    }
-
-    componentWillUnmount(){
-        document.title = "STaC Solutions Ltd";
-    }
-
-    getPostData(postID) {
-        let post = this.props.posts.filter(post => post.id === postID);
-
-        if (post.length > 0) {
-            return post[0];
-        }
-
-        return null;
-    }
-
-    fetchPostHTML(path) {
-        return fetch("/posts/" + path, {
-            method: 'GET',
-            mode: 'cors',
-            credentials: 'include',
-            headers: {
-                'Accept': 'text/html'
-            }
-        })
-            .then(response => response.text())
-            .then(text => this.setState({ postHTML: text }));
-    }
-
-    createMarkup(html) {
-        return { __html: html };
-    }
-
-    render() {
-        if (this.state.post === null) {
-            return null;
-        } else {
-
-            return (
-                <section>
-                    <ImageBar ImageClass="parallax parallax--weave" />
-                    <section className="panel">
-                        <PostMetaData post={this.state.post} />
-                        <div id="article" dangerouslySetInnerHTML={this.createMarkup(this.state.postHTML)}></div>
-                    </section>
-                    <ImageBar ImageClass="parallax parallax--triangles" />
-                </section >
-            );
-        }
-
-    }
+    return (
+      <section>
+        <ImageBar ImageClass="parallax parallax--weave" />
+        <section className="panel">
+          <PostMetaData post={post} />
+          <div id="article" dangerouslySetInnerHTML={Post.createMarkUp(postHTML)} />
+        </section>
+        <ImageBar ImageClass="parallax parallax--triangles" />
+      </section>
+    );
+  }
 }
 
 Post.propTypes = {
-    postsActions: PropTypes.object,
-    posts: PropTypes.array
+  match: PropTypes.instanceOf(Object).isRequired,
+  posts: PropTypes.instanceOf(Array).isRequired,
+  dispatchablePostsActions: PropTypes.instanceOf(Object).isRequired
 };
 
 function mapStateToProps(state) {
-    return {
-        posts: state.posts
-    };
+  return {
+    posts: state.posts
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        postsActions: bindActionCreators(postsActions, dispatch)
-    };
+  return {
+    dispatchablePostsActions: bindActionCreators(postsActions, dispatch)
+  };
 }
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Post);

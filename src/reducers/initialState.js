@@ -1,4 +1,4 @@
 export default {
-    posts: [],
-    authors: []
+  posts: [],
+  authors: []
 };

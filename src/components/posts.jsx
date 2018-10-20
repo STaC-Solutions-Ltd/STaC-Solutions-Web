@@ -1,71 +1,72 @@
+import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import * as postsActions from '../actions/postsActions';
-import PropTypes from 'prop-types';
-import React from 'react';
-import ImageBar from './common/image-bar.jsx'
-import PostSummary from './posts/post-summary.jsx'
+import ImageBar from './common/image-bar';
+import PostSummary from './posts/post-summary';
 
 class Posts extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      posts: []
+    };
+  }
 
-    constructor() {
-        super();
-        this.state = {
-            posts: []
-        };
-    }
+  componentDidMount() {
+    const { posts, dispatchablePostAction } = this.props;
 
-    componentDidMount() {
-        this.props.postsActions.fetchPosts()
-            .then(() => {
-                let posts = this.props.posts.filter(post => post.enabled === 1).map((post) => {
-                    return (
-                        <PostSummary key={post.id}
-                            id={post.id}
-                            authorId={post.authorId}
-                            date={post.date}
-                            title={post.title}
-                            summary={post.summary} />
-                    );
-                });
+    dispatchablePostAction.fetchPosts()
+      .then(() => {
+        const filteredPosts = posts.filter(post => post.enabled === 1).map(post => (
+          <PostSummary
+            key={post.id}
+            id={post.id}
+            authorId={post.authorId}
+            date={post.date}
+            title={post.title}
+            summary={post.summary}
+          />
+        ));
 
-                this.setState({ posts: posts });
-            });
-    }
+        this.setState({ posts: filteredPosts });
+      });
+  }
 
-    render() {
+  render() {
+    const { posts } = this.state;
 
-        return (
-            <section>
-                <ImageBar ImageClass="parallax parallax--weave" />
-                <div className="panel">
-                    {this.state.posts}
-                </div>
-                <ImageBar ImageClass="parallax parallax--triangles" />
-            </section>
-        )
-    }
+    return (
+      <section>
+        <ImageBar ImageClass="parallax parallax--weave" />
+        <div className="panel">
+          {posts}
+        </div>
+        <ImageBar ImageClass="parallax parallax--triangles" />
+      </section>
+    );
+  }
 }
 
-
 Posts.propTypes = {
-    postsActions: PropTypes.object,
-    posts: PropTypes.array
+  posts: PropTypes.instanceOf(Array).isRequired,
+  dispatchablePostAction: PropTypes.instanceOf(Object).isRequired
 };
 
 function mapStateToProps(state) {
-    return {
-        posts: state.posts
-    };
+  return {
+    posts: state.posts
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        postsActions: bindActionCreators(postsActions, dispatch)
-    };
+  return {
+    dispatchablePostAction: bindActionCreators(postsActions, dispatch)
+  };
 }
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Posts);
