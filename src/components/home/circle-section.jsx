@@ -1,15 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class CircleSection extends React.Component{
-    render(){
-        return (
-            <div className="circles">
-                {this.props.children}
-            </div>
-        )
-    }
-}
+const CircleSection = (props) => {
+  const { children } = props;
 
-export default CircleSection
+  return (
+    <div className="circles">
+      {children}
+    </div>
+  );
+};
 
+CircleSection.propTypes = {
+  children: PropTypes.instanceOf(Array).isRequired
+};
 
+export default CircleSection;

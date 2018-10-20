@@ -1,11 +1,12 @@
-[{
-        "id": 1,
-        "name": "Adam",
-        "avatar": "Avatar1.svg"
-    },
-    {
-        "id": 2,
-        "name": "Jessica",
-        "avatar": "Avatar2.svg"
-    }
+[
+  {
+    "id": 1,
+    "name": "Adam",
+    "avatar": "Avatar1.svg"
+  },
+  {
+    "id": 2,
+    "name": "Jessica",
+    "avatar": "Avatar2.svg"
+  }
 ]
