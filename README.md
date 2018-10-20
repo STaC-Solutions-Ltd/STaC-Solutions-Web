@@ -36,3 +36,10 @@ Deployments are carried out automatically by Azure DevOps this is a precursor to
 * **Jessica Whitelock** 
 
 See also the list of [contributors](https://github.com/STaC-Solutions-Ltd/STaC-Solutions-Web/graphs/contributors) who participated in this project.
+
+
+## Licensing - Apache License 2.0
+
+All source is licensed as per the attached license.txt more information can be found here: https://choosealicense.com/licenses/apache-2.0/
+
+Trademarks and Logos remain the express property of STaC Solutions Ltd.
