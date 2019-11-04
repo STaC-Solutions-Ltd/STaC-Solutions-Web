@@ -1,0 +1,27 @@
+button, .btn {
+
+  background: $primary-color;
+  color: #000;
+  padding: 15px 22px;
+  line-height: 1;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 14px;
+  display: inline-block;
+  cursor: pointer;
+  border: 0;
+
+  &--primary {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 25px 40px;
+    margin-top: 30px;
+  }
+
+  @media screen and (max-width: $large) {
+    &--primary {
+      padding: 20px 30px;
+      margin-top: 15px;
+    }
+  }
+}

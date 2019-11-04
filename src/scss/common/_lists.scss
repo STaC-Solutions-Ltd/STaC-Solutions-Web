@@ -1,0 +1,32 @@
+ul {
+  padding-left: 0;
+  margin-left: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+
+  li {
+    margin-right: 30px;
+  }
+
+  &.yellow-bullet {
+    flex-direction: column;
+
+    li {
+      margin-bottom: 0.8rem;
+      padding-left: 40px;
+      position: relative;
+
+      &:before {
+        content: '';
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        background: $primary-color;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+}
