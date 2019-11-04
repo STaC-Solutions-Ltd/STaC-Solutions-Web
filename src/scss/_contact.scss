@@ -1,0 +1,87 @@
+.contact {
+  display: flex;
+  flex-direction: row;
+
+  .google-form {
+    position: relative;
+    overflow: hidden;
+    padding-top: 56.25%;
+    height:645px;
+iframe{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border: 0;
+}
+  }
+
+  &__content {
+    width: 50%;
+  }
+
+  &__image-wrapper {
+    width: 55%;
+    padding: 20px;
+  }
+
+  &__subcontent {
+    display: flex;
+    margin-top: 40px;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    ul {
+      width: 50%;
+    }
+
+    p {
+      width: 50%;
+      margin-right: 40px;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    &__content {
+      width: 50%;
+    }
+  
+    &__image-wrapper {
+      width: 65%;
+    }
+  }
+
+  @media screen and (min-width: 901px) {
+    &__content {
+      padding-right: 80px;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    &__subcontent {
+      flex-direction: column;
+
+      p, ul {
+        width: 100%;
+        padding: 0;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1300px) {
+    flex-direction: column;
+
+    form {
+      max-width: 100%;
+    }
+  
+    &__content {
+      width: 100%;
+      padding-right: 0;
+    }
+  
+    &__image-wrapper {
+      width: 100%;
+    }
+  }
+}
