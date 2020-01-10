@@ -68,6 +68,12 @@ module.exports = {
       template: './src/index.html',
       filename: 'index.html',
     }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      hash: true,
+      template: './src/privacy.html',
+      filename: 'privacy.html',
+    }),
     new CopyWebpackPlugin(
       [
         { from: path.resolve(__dirname, 'assets'), to: 'assets' },
