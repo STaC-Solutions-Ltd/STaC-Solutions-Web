@@ -44,7 +44,7 @@
     "eslint-config-airbnb": "^17.1.0",
     "imagesloaded": "^4.1.4",
     "slick-carousel": "^1.8.1",
-    "swiper": "^4.5.0",
+    "swiper": "^6.5.1",
     "url-loader": "^1.1.2"
   }
 }
